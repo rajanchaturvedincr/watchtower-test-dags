@@ -40,8 +40,7 @@ def _reconcile_revenue(**context):
     region_totals = {}
     for txn in settled:
         region = txn["region"]
-        # BUG: typo in key name — should be "amount" not "ammount"
-        region_totals[region] = region_totals.get(region, 0) + txn["ammount"]
+        region_totals[region] = region_totals.get(region, 0) + txn["amount"]
 
     print(f"Revenue by region: {region_totals}")
     context["ti"].xcom_push(key="region_totals", value=region_totals)
